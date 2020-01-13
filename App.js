@@ -16,7 +16,7 @@ export default class App extends Component {
         super(props);
 
         this.data = [];
-        for (let i=0; i< 100; i++) {
+        for (let i=0; i< 1000; i++) {
             this.data.push({
                 name: 'aaa',
                 age: i
