@@ -12,9 +12,16 @@
 
 @interface RNTableView : UITableView
 
-@property (nonatomic, copy) NSArray *data;
+@property (nonatomic, strong) NSArray *rowData;
+@property (nonatomic, strong) NSString *rowModule;
 
-@property (nonatomic, copy) NSString *identifier;
+@property (nonatomic, strong) NSString *headerModule;
+@property (nonatomic, assign) CGFloat headerHeight;
+@property (nonatomic, strong) NSDictionary *headerData;
+
+@property (nonatomic, strong) NSString *footerModule;
+@property (nonatomic, assign) CGFloat footerHeight;
+@property (nonatomic, strong) NSDictionary *footerData;
 
 - (instancetype)initWithBridge:(RCTBridge *)bridge;
 

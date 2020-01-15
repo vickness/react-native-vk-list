@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
+import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 import java.util.ArrayList;
 
@@ -14,9 +15,11 @@ public class RNAdapter extends BaseAdapter {
     private ArrayList arrayList;
     private String identifier;
     private Integer rowHeight;
+    private ReactInstanceManager reactInstanceManager;
 
-    public RNAdapter(ThemedReactContext context) {
+    public RNAdapter(ThemedReactContext context, ReactInstanceManager reactInstanceManager) {
         this.context = context;
+        this.reactInstanceManager = reactInstanceManager;
         this.arrayList = new ArrayList();
     }
 
@@ -25,7 +28,7 @@ public class RNAdapter extends BaseAdapter {
     }
 
     public void setRowHeight(Integer integer) {
-        this.rowHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, integer, context.getResources().getDisplayMetrics());
+        this.rowHeight = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, integer, this.context.getResources().getDisplayMetrics());
     }
 
     public void setData(ArrayList list) {
@@ -51,13 +54,14 @@ public class RNAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         RNTableViewCell cell = (RNTableViewCell) convertView;
+        Object item = arrayList.get(position);
         if (cell == null) {
-            cell = new RNTableViewCell(this.context, this.identifier);
+            cell = new RNTableViewCell(this.context, this.reactInstanceManager, this.identifier, item, position);
             cell.setMinimumHeight(this.rowHeight);
             cell.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        } else {
+            cell.setDataAndIndex(item, position);
         }
-        Object item = arrayList.get(position);
-        cell.setDataAndIndex(item, position);
         return cell;
     }
 }

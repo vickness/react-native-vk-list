@@ -13,7 +13,9 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style
               reuseIdentifier:(NSString *)reuseIdentifier
                        bridge:(RCTBridge *)bridge
-                  reactModule:(NSString *)reactModule;
+                  reactModule:(NSString *)reactModule
+                     indePath:(NSIndexPath *)indexPath
+                         data:(id)data;
 
 - (void)setData:(id)data indexPath:(NSIndexPath *)indexPath;
 

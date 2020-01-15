@@ -13,10 +13,11 @@
     RCTRootView *_rootView;
 }
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier bridge:(RCTBridge *)bridge reactModule:(NSString *)reactModule {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier bridge:(RCTBridge *)bridge reactModule:(NSString *)reactModule indePath:(NSIndexPath *)indexPath data:(id)data {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        _rootView = [[RCTRootView alloc] initWithBridge:bridge moduleName:reactModule initialProperties:nil];
+        NSDictionary *props = [self getProps:data indexPath:indexPath];
+        _rootView = [[RCTRootView alloc] initWithBridge:bridge moduleName:reactModule initialProperties:props];
         _rootView.frame = self.contentView.frame;
         _rootView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self.contentView addSubview:_rootView];
@@ -26,12 +27,16 @@
 }
 
 - (void)setData:(id)data indexPath:(NSIndexPath *)indexPath {
-    NSDictionary *props = @{
-                            @"data":data,
-                            @"section":[[NSNumber alloc] initWithLong:indexPath.section],
-                            @"row":[[NSNumber alloc] initWithLong:indexPath.row]
-                            };
+    NSDictionary *props = [self getProps:data indexPath:indexPath];
     _rootView.appProperties = props;
+}
+
+- (NSDictionary *)getProps:(id)data indexPath:(NSIndexPath *)indexPath {
+    return @{
+             @"data":data,
+             @"section":[[NSNumber alloc] initWithLong:indexPath.section],
+             @"row":[[NSNumber alloc] initWithLong:indexPath.row]
+             };
 }
 
 

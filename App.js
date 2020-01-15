@@ -7,30 +7,48 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, SafeAreaView, View} from 'react-native';
+import {SafeAreaView} from 'react-native';
 import TableView from './lib/index';
 
 export default class App extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            data: []
+        };
+    }
 
-        this.data = [];
+    componentDidMount() {
+        let data = [];
         for (let i=0; i< 1000; i++) {
-            this.data.push({
+            data.push({
                 name: 'aaa',
                 age: i
             });
         }
+        this.setState({
+            data: data
+        });
     }
 
-  render() {
+    render() {
     return (
         <SafeAreaView style={{flex: 1}}>
             <TableView
+                style={{flex: 1}}
+
+                rowModule={"TableViewRow"}
                 rowHeight={200}
-                cellName={"TableViewExampleCell"}
-                dataSource={this.data}
+                rowData={this.state.data}
+
+                headerModule={"TableViewHeader"}
+                headerHeight={300}
+                headerData={{"title": "aaa"}}
+
+                footerModule={"TableViewFooter"}
+                footerHeight={200}
+                footerData={{"title": "bbb"}}
             />
         </SafeAreaView>
     );
