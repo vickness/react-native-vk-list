@@ -11,6 +11,7 @@
 #import <React/RCTConvert.h>
 #import <React/RCTEventDispatcher.h>
 #import <React/RCTRootView.h>
+#import "MJRefresh.h"
 
 @interface RNTableView () <UITableViewDelegate, UITableViewDataSource>
 
@@ -124,6 +125,46 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
         [cell setData:item indexPath:indexPath];
     }
     return cell;
+}
+
+
+#pragma mark - refresh
+- (void)setOnHeaderRefresh:(RCTDirectEventBlock)onHeaderRefresh {
+    _onHeaderRefresh = onHeaderRefresh;
+    self.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(headerRefreshing)];
+}
+
+- (void)setOnFooterRefresh:(RCTDirectEventBlock)onFooterRefresh {
+    _onFooterRefresh = onFooterRefresh;
+    self.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerRefreshing)];
+}
+
+- (void)headerRefreshing {
+    self.onHeaderRefresh(@{});
+}
+
+- (void)footerRefreshing {
+    self.onFooterRefresh(@{});
+}
+
+- (void)startHeaderRefresh {
+    [self.mj_header beginRefreshing];
+}
+
+- (void)stopHeaderRefresh {
+    [self.mj_header endRefreshing];
+}
+
+- (void)startFooterRefresh {
+    [self.mj_footer beginRefreshing];
+}
+
+- (void)stopFooterRefresh {
+    [self.mj_footer endRefreshing];
+}
+
+- (void)stopFooterRefreshWithNoData {
+    [self.mj_footer endRefreshingWithNoMoreData];
 }
 
 @end

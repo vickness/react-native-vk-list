@@ -21,7 +21,7 @@ export default class App extends Component {
 
     componentDidMount() {
         let data = [];
-        for (let i=0; i< 1000; i++) {
+        for (let i=0; i< 10; i++) {
             data.push({
                 name: 'aaa',
                 age: i
@@ -37,6 +37,7 @@ export default class App extends Component {
         <SafeAreaView style={{flex: 1}}>
             <TableView
                 style={{flex: 1}}
+                ref={o => this.tableView = o}
 
                 rowModule={"TableViewRow"}
                 rowHeight={200}
@@ -49,8 +50,28 @@ export default class App extends Component {
                 footerModule={"TableViewFooter"}
                 footerHeight={200}
                 footerData={{"title": "bbb"}}
+
+                onHeaderRefresh={this._onHeaderRefresh}
+                onFooterRefresh={this._onFooterRefresh}
             />
         </SafeAreaView>
     );
   }
+
+  _onHeaderRefresh = () => {
+
+        setTimeout(() => {
+            console.log("刷新结束");
+            this.tableView.stopHeaderRefresh();
+        }, 2000)
+  };
+
+  _onFooterRefresh = () => {
+
+      setTimeout(() => {
+          console.log("加载结束");
+          this.tableView.stopFooterRefresh();
+      }, 2000)
+  };
+
 }

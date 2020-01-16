@@ -7,23 +7,37 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <React/RCTComponent.h>
 
 @class RCTBridge;
 
 @interface RNTableView : UITableView
 
-@property (nonatomic, strong) NSArray *rowData;
-@property (nonatomic, strong) NSString *rowModule;
+@property (nonatomic, copy) NSArray *rowData;
+@property (nonatomic, copy) NSString *rowModule;
 
-@property (nonatomic, strong) NSString *headerModule;
+@property (nonatomic, copy) NSString *headerModule;
 @property (nonatomic, assign) CGFloat headerHeight;
-@property (nonatomic, strong) NSDictionary *headerData;
+@property (nonatomic, copy) NSDictionary *headerData;
 
-@property (nonatomic, strong) NSString *footerModule;
+@property (nonatomic, copy) NSString *footerModule;
 @property (nonatomic, assign) CGFloat footerHeight;
-@property (nonatomic, strong) NSDictionary *footerData;
+@property (nonatomic, copy) NSDictionary *footerData;
+
+@property (nonatomic, copy) RCTDirectEventBlock onHeaderRefresh;
+@property (nonatomic, copy) RCTDirectEventBlock onFooterRefresh;
 
 - (instancetype)initWithBridge:(RCTBridge *)bridge;
+
+- (void)startHeaderRefresh;
+
+- (void)stopHeaderRefresh;
+
+- (void)startFooterRefresh;
+
+- (void)stopFooterRefresh;
+
+- (void)stopFooterRefreshWithNoData;
 
 @end
 

@@ -24,14 +24,17 @@ android {
         targetSdkVersion safeExtGet('targetSdkVersion', 28)
     }
     lintOptions {
-        abortOnError false
+        warning 'InvalidPackage', 'MissingPermission'
     }
 }
 
 repositories {
     mavenCentral()
+    google()
+    jcenter()
 }
 
 dependencies {
-    compile 'com.facebook.react:react-native:+'
+    implementation 'com.facebook.react:react-native:+'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
 }
