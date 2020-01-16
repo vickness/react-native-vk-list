@@ -11,7 +11,13 @@
 #import <React/RCTConvert.h>
 #import <React/RCTEventDispatcher.h>
 #import <React/RCTRootView.h>
+
+#if __has_include(<MJRefresh/MJRefresh.h>)
+#import <MJRefresh/MJRefresh.h>
+#else
 #import "MJRefresh.h"
+#endif
+
 
 @interface RNTableView () <UITableViewDelegate, UITableViewDataSource>
 
@@ -48,6 +54,7 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     self.tableFooterView = [UIView new];
     self.dataSource = self;
     self.delegate = self;
+    self.estimatedRowHeight = 0;
 }
 
 
@@ -106,6 +113,10 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     return _footerView;
 }
 
+- (void)setRowData:(NSArray *)rowData {
+    _rowData = rowData;
+    [self reloadData];
+}
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

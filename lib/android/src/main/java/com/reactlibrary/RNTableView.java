@@ -70,8 +70,6 @@ public class RNTableView extends SmartRefreshLayout {
         this.reactInstanceManager = application.getReactNativeHost().getReactInstanceManager();
 
         this.listView = new ListView(context);
-        AbsListView.LayoutParams layoutParams = new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        this.listView.setLayoutParams(layoutParams);
         setRefreshContent(this.listView);
 
         this.adapter = new RNAdapter(context, this.reactInstanceManager);

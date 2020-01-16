@@ -12,66 +12,81 @@ import TableView from './lib/index';
 
 export default class App extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
-            data: []
-        };
+            data: [{
+                name: 'aaa',
+                age: 0
+            }]
+        }
     }
 
-    componentDidMount() {
+    getItems(){
         let data = [];
-        for (let i=0; i< 10; i++) {
+        for (let i=0; i<10; i++) {
             data.push({
                 name: 'aaa',
                 age: i
             });
         }
-        this.setState({
-            data: data
-        });
+        return data;
+    };
+
+    componentDidMount() {
+
+        setTimeout(() => {
+            this.setState({
+                data: this.getItems()
+            });
+        }, 2000);
     }
 
     render() {
-    return (
-        <SafeAreaView style={{flex: 1}}>
-            <TableView
-                style={{flex: 1}}
-                ref={o => this.tableView = o}
+        return (
+            <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+                <TableView
+                    style={{flex: 1}}
+                    ref={o => this.tableView = o}
 
-                rowModule={"TableViewRow"}
-                rowHeight={200}
-                rowData={this.state.data}
+                    rowModule={"TableViewRow"}
+                    rowHeight={200}
+                    rowData={this.state.data}
 
-                headerModule={"TableViewHeader"}
-                headerHeight={300}
-                headerData={{"title": "aaa"}}
+                    // headerModule={"TableViewHeader"}
+                    // headerHeight={300}
+                    // headerData={{}}
 
-                footerModule={"TableViewFooter"}
-                footerHeight={200}
-                footerData={{"title": "bbb"}}
+                    // footerModule={"TableViewFooter"}
+                    // footerHeight={200}
+                    // footerData={{}}
 
-                onHeaderRefresh={this._onHeaderRefresh}
-                onFooterRefresh={this._onFooterRefresh}
-            />
-        </SafeAreaView>
-    );
-  }
+                    onHeaderRefresh={this._onHeaderRefresh}
+                    onFooterRefresh={this._onFooterRefresh}
 
-  _onHeaderRefresh = () => {
+                />
+            </SafeAreaView>
+        )
+    }
+
+    _onHeaderRefresh = () => {
 
         setTimeout(() => {
-            console.log("刷新结束");
+            this.setState({
+                data: this.getItems()
+            });
             this.tableView.stopHeaderRefresh();
         }, 2000)
-  };
+    };
 
-  _onFooterRefresh = () => {
+    _onFooterRefresh = () => {
 
-      setTimeout(() => {
-          console.log("加载结束");
-          this.tableView.stopFooterRefresh();
-      }, 2000)
-  };
+        setTimeout(() => {
+            this.setState({
+                data: this.state.data.concat(this.getItems())
+            });
+            this.tableView.stopFooterRefresh();
+        }, 2000)
+    };
 
 }

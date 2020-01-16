@@ -16,7 +16,10 @@
     static NSBundle *refreshBundle = nil;
     if (refreshBundle == nil) {
         // 这里不使用mainBundle是为了适配pod 1.x和0.x
-        refreshBundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[MJRefreshComponent class]] pathForResource:@"MJRefresh" ofType:@"bundle"]];
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"Frameworks" ofType:nil];
+        path = [[NSBundle bundleWithPath:path] pathForResource:@"MJRefresh" ofType:@"framework"];
+        path = [[NSBundle bundleWithPath:path] pathForResource:@"MJRefresh" ofType:@"bundle"];
+        refreshBundle = [NSBundle bundleWithPath:path];
     }
     return refreshBundle;
 }

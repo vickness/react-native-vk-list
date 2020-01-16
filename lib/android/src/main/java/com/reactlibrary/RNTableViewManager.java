@@ -46,7 +46,7 @@ public class RNTableViewManager extends SimpleViewManager <RNTableView> {
 
     @ReactProp(name = "rowData")
     public void setRowData(RNTableView view, ReadableArray list) {
-        ArrayList<Object> arrayList = list.toArrayList();
+        ArrayList arrayList = list.toArrayList();
         view.setRowData(arrayList);
     }
 
