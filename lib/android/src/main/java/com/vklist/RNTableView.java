@@ -16,8 +16,6 @@ import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.*;
-import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
-import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
@@ -32,7 +30,7 @@ public class RNTableView extends SmartRefreshLayout {
             @NonNull
             @Override
             public RefreshHeader createRefreshHeader(@NonNull Context context, @NonNull RefreshLayout layout) {
-                return new ClassicsHeader(context);
+                return new RNRefreshHeader(context);
             }
         });
         //设置全局的Footer构建器
@@ -40,7 +38,7 @@ public class RNTableView extends SmartRefreshLayout {
             @NonNull
             @Override
             public RefreshFooter createRefreshFooter(@NonNull Context context, @NonNull RefreshLayout layout) {
-                return new ClassicsFooter(context).setDrawableSize(20);
+                return new RNRefreshFooter(context);
             }
         });
     }
@@ -64,7 +62,8 @@ public class RNTableView extends SmartRefreshLayout {
         this.context = context;
         this.eventEmitter = context.getJSModule(RCTEventEmitter.class);
 
-        setDragRate(0.3f);
+        setEnableLoadMoreWhenContentNotFull(false);
+        setEnableAutoLoadMore(false);
 
         ReactApplication application = (ReactApplication) context.getCurrentActivity().getApplication();
         this.reactInstanceManager = application.getReactNativeHost().getReactInstanceManager();
@@ -170,8 +169,6 @@ public class RNTableView extends SmartRefreshLayout {
         }
     }
 
-
-
     public void setEnableHeaderRefresh(Boolean value) {
         setEnableRefresh(value);
     }
@@ -198,5 +195,21 @@ public class RNTableView extends SmartRefreshLayout {
 
     public void stopFooterRefreshWithNoData() {
         finishLoadMoreWithNoMoreData();
+    }
+
+
+    @Override
+    public void requestLayout() {
+        super.requestLayout();
+        post(new Runnable(){
+            @Override
+            public void run() {
+                measure(
+                        MeasureSpec.makeMeasureSpec(getWidth(), MeasureSpec.EXACTLY),
+                        MeasureSpec.makeMeasureSpec(getHeight(), MeasureSpec.EXACTLY)
+                );
+                layout(getLeft(), getTop(), getRight(), getBottom());
+            }
+        });
     }
 }
