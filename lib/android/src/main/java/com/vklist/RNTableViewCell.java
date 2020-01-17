@@ -1,4 +1,4 @@
-package com.reactlibrary;
+package com.vklist;
 
 import android.os.Bundle;
 import android.view.ViewGroup;

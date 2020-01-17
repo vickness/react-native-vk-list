@@ -1,4 +1,4 @@
-package com.reactlibrary;
+package com.vklist;
 
 import android.util.TypedValue;
 import android.view.View;

@@ -1,4 +1,4 @@
-package com.reactlibrary;
+package com.vklist;
 
 import android.content.Context;
 import android.os.Bundle;
