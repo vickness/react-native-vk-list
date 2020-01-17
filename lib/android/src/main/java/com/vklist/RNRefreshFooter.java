@@ -8,7 +8,6 @@ public class RNRefreshFooter extends ClassicsFooter {
 
     public RNRefreshFooter(Context context) {
         super(context);
-        setDrawableSize(16);
     }
 
     @Override

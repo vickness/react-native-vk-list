@@ -1,21 +1,23 @@
 
 {
   "name": "react-native-vk-list",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "react-native list view",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "react-native",
+    "MJRefresh",
+    "SmartRefreshLayout",
     "listView",
-    "tableView"
+    "tableView",
+    "flatList"
   ],
   "author": "",
   "license": "MIT",
   "peerDependencies": {
-    "react-native": "^0.58.6"
+    "react-native": "^0.60.0"
   },
   "bugs": {
     "url": "https://github.com/vickness/react-native-vk-list/issues"

@@ -8,7 +8,6 @@ public class RNRefreshHeader extends ClassicsHeader {
 
     public RNRefreshHeader(Context context) {
         super(context);
-        setDrawableSize(16);
     }
 
     @Override
