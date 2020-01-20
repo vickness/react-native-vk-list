@@ -11,6 +11,8 @@ import android.widget.ListView;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactRootView;
+import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -116,9 +118,8 @@ public class RNTableView extends SmartRefreshLayout {
     }
 
     public void setHeaderData(Map map) {
-        Bundle bundle  = new Bundle();
-        bundle.putString("data", map.toString());
-        headerData = bundle;
+        ReadableMap readableMap = Arguments.makeNativeMap(map);
+        headerData = Arguments.toBundle(readableMap);
     }
 
     public void setFooterModule(String string) {
@@ -136,9 +137,8 @@ public class RNTableView extends SmartRefreshLayout {
     }
 
     public void setFooterData(Map map) {
-        Bundle bundle  = new Bundle();
-        bundle.putString("data", map.toString());
-        footerData = bundle;
+        ReadableMap readableMap = Arguments.makeNativeMap(map);
+        footerData = Arguments.toBundle(readableMap);
     }
 
 

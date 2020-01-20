@@ -53,13 +53,13 @@ export default class App extends Component {
                     rowHeight={200}
                     rowData={this.state.data}
 
-                    // headerModule={"TableViewHeader"}
-                    // headerHeight={300}
-                    // headerData={{}}
+                    headerModule={"TableViewHeader"}
+                    headerHeight={300}
+                    headerData={{text: "aaaaa"}}
 
-                    // footerModule={"TableViewFooter"}
-                    // footerHeight={200}
-                    // footerData={{}}
+                    footerModule={"TableViewFooter"}
+                    footerHeight={200}
+                    footerData={{text: "bbbbb"}}
 
                     onHeaderRefresh={this._onHeaderRefresh}
                     onFooterRefresh={this._onFooterRefresh}

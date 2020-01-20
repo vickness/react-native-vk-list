@@ -3,11 +3,14 @@ package com.vklist;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-
-import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactRootView;
+import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.uimanager.ThemedReactContext;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RNTableViewCell extends LinearLayout {
 
@@ -30,10 +33,11 @@ public class RNTableViewCell extends LinearLayout {
     }
 
     public Bundle getBundle(Object item, int index) {
-        Bundle bundle = new Bundle();
-        bundle.putInt("section", 0);
-        bundle.putInt("row", index);
-        bundle.putString("data", item.toString());
-        return bundle;
+        Map map = new HashMap();
+        map.put("section", 0);
+        map.put("row", index);
+        map.put("data", item);
+        ReadableMap readableMap = Arguments.makeNativeMap(map);
+        return Arguments.toBundle(readableMap);
     }
 }

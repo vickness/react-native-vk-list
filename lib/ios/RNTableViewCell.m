@@ -33,9 +33,9 @@
 
 - (NSDictionary *)getProps:(id)data indexPath:(NSIndexPath *)indexPath {
     return @{
-             @"data":data,
-             @"section":[[NSNumber alloc] initWithLong:indexPath.section],
-             @"row":[[NSNumber alloc] initWithLong:indexPath.row]
+             @"data": data,
+             @"section": @(indexPath.section),
+             @"row": @(indexPath.row)
              };
 }
 

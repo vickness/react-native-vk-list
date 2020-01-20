@@ -9,9 +9,7 @@ const TableViewFooter = props => {
                 style={{height: 180}}
                 source={{uri: 'http://c.hiphotos.baidu.com/image/pic/item/30adcbef76094b36de8a2fe5a1cc7cd98d109d99.jpg'}}
             />
-            {
-                console.log(props)
-            }
+            <Text>{props.text}</Text>
         </View>
     );
 };

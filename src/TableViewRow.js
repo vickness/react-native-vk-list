@@ -10,7 +10,7 @@ const TableViewRow = props => {
                     style={{width: 30, height: 30, marginRight: 10}}
                     source={{uri: 'http://e.hiphotos.baidu.com/image/pic/item/a1ec08fa513d2697e542494057fbb2fb4316d81e.jpg'}}
                 />
-                <Text>{`row=${props.row}, data=${props.data}`}</Text>
+                <Text>{`row=${props.row}, name=${props.data.name}, age=${props.data.age}`}</Text>
             </View>
             <View style={{marginVertical: 10}}>
                 <Text>{"我们要学会感谢别人的懒惰，因为正是他们的懒惰，才使我们拥有了更多做事的机会，为我们搭起了展示才华的舞台与通向成功之路的台阶"}</Text>

@@ -86,14 +86,14 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
 - (void)setHeaderData:(NSDictionary *)headerData {
     _headerData = headerData;
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.headerView.appProperties = @{@"data": headerData};
+        self.headerView.appProperties = headerData;
     });
 }
 
 - (void)setFooterData:(NSDictionary *)footerData {
     _footerData = footerData;
     dispatch_async(dispatch_get_main_queue(), ^{
-        self.footerView.appProperties = @{@"data": footerData};
+        self.footerView.appProperties = footerData;
     });
 }
 
