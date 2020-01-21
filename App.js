@@ -64,6 +64,8 @@ export default class App extends Component {
                     onHeaderRefresh={this._onHeaderRefresh}
                     onFooterRefresh={this._onFooterRefresh}
 
+                    showSeparator={false}
+
                 />
             </SafeAreaView>
         )

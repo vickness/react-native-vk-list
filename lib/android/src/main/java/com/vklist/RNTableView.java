@@ -141,6 +141,12 @@ public class RNTableView extends SmartRefreshLayout {
         footerData = Arguments.toBundle(readableMap);
     }
 
+    public void setShowSeparator(Boolean value) {
+        if (value) {
+        } else {
+            this.listView.setDividerHeight(0);
+        }
+    }
 
     public void creatHeaderView() {
         if (headerView == null) {

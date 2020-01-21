@@ -99,6 +99,11 @@ public class RNTableViewManager extends SimpleViewManager <RNTableView> {
         view.setEnableFooterRefresh(value);
     }
 
+    @ReactProp(name = "showSeparator")
+    public void setShowSeparator(RNTableView view, Boolean value) {
+        view.setShowSeparator(value);
+    }
+
     @Nullable
     @Override
     public Map<String, Integer> getCommandsMap() {

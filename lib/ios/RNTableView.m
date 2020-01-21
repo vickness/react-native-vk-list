@@ -118,6 +118,16 @@ RCT_NOT_IMPLEMENTED(-initWithCoder:(NSCoder *)aDecoder)
     [self reloadData];
 }
 
+- (void)setShowSeparator:(BOOL)showSeparator {
+    _showSeparator = showSeparator;
+    if (showSeparator) {
+        self.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        self.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    } else {
+        self.separatorStyle = UITableViewCellSeparatorStyleNone;
+    }
+}
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;

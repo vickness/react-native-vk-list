@@ -27,6 +27,8 @@
 @property (nonatomic, copy) RCTDirectEventBlock onHeaderRefresh;
 @property (nonatomic, copy) RCTDirectEventBlock onFooterRefresh;
 
+@property (nonatomic, assign) BOOL showSeparator;
+
 - (instancetype)initWithBridge:(RCTBridge *)bridge;
 
 - (void)startHeaderRefresh;

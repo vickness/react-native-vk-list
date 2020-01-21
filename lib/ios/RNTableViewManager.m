@@ -28,6 +28,8 @@ RCT_EXPORT_VIEW_PROPERTY(footerData, NSDictionary)
 RCT_EXPORT_VIEW_PROPERTY(onHeaderRefresh, RCTDirectEventBlock)
 RCT_EXPORT_VIEW_PROPERTY(onFooterRefresh, RCTDirectEventBlock)
 
+RCT_EXPORT_VIEW_PROPERTY(showSeparator, BOOL)
+
 RCT_EXPORT_MODULE(RNTableView)
 - (UIView *)view{
     return [[RNTableView alloc] initWithBridge:self.bridge];
