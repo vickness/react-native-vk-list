@@ -10,7 +10,7 @@
     "prop-types": "^15.7.2",
     "react": "16.8.3",
     "react-native": "0.59.10",
-    "react-native-fast-image": "^6.1.1"
+    "react-native-fast-image": "^8.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
